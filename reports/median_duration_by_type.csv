@@ -1,0 +1,5 @@
+member_type,rideable_type,trips,median_minutes
+casual,classic_bike,753702,15.614983333333333
+casual,electric_bike,1077480,10.018591666666667
+member,classic_bike,1592917,8.358866666666666
+member,electric_bike,2931161,8.8732

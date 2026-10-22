@@ -133,7 +133,7 @@ def daily_volume(daily: pd.DataFrame, theme="light"):
     locator = matplotlib.dates.AutoDateLocator(minticks=4, maxticks=8)
     ax.xaxis.set_major_locator(locator)
     ax.xaxis.set_major_formatter(matplotlib.dates.ConciseDateFormatter(locator))
-    _legend(fig, ax, t, "upper left")
+    _legend(fig, ax, t, "upper right")
     return fig
 
 

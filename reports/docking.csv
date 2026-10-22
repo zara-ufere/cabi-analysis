@@ -1,0 +1,5 @@
+rideable_type,member_type,trips,start_docked,end_docked,both_docked
+classic_bike,casual,753702,753702,753700,753700
+classic_bike,member,1592917,1592917,1592917,1592917
+electric_bike,casual,1077480,808216,813187,669746
+electric_bike,member,2931161,1895729,1867073,1468812

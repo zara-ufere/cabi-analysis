@@ -34,6 +34,21 @@ def volume(r: Dict[str, pd.DataFrame]) -> str:
                                          _pct(m.member_trips.sum() / trips), _pct(m.ebike_trips.sum() / trips)))
 
 
+def seasonality(r: Dict[str, pd.DataFrame]) -> str:
+    m = r["monthly"]
+    if len(m) < 6:
+        return ""
+    hi, lo = m.loc[m.trips_per_day.idxmax()], m.loc[m.trips_per_day.idxmin()]
+    cas = (m.casual_trips / m.trips)
+    ci = cas.idxmax()
+    return ("Demand swings with the season: %s is the busiest month at about %s trips a day and %s the quietest "
+            "at about %s, a ratio of %.1f to 1. Casual riders are the most seasonal group, making up %s of trips "
+            "in %s against %s in %s. Weather is not in the data, so this is a pattern and not an explanation."
+            % (hi["month"], "{:,.0f}".format(hi.trips_per_day), lo["month"], "{:,.0f}".format(lo.trips_per_day),
+               hi.trips_per_day / lo.trips_per_day, _pct(cas[ci]), m.loc[ci, "month"],
+               _pct(cas[m.trips_per_day.idxmin()]), lo["month"]))
+
+
 def commute(r: Dict[str, pd.DataFrame]) -> str:
     h = r["hourly"]
     wm, wc = _peak(h, "weekday", "member"), _peak(h, "weekday", "casual")
@@ -109,7 +124,7 @@ def quality(r: Dict[str, pd.DataFrame], rows_read: int = 0) -> str:
 
 
 def all_findings(r: Dict[str, pd.DataFrame], rows_read: int = 0) -> List[str]:
-    out = [volume(r), commute(r), duration(r), round_trips(r), rebalancing(r), dockless(r), quality(r, rows_read)]
+    out = [volume(r), seasonality(r), commute(r), duration(r), round_trips(r), rebalancing(r), dockless(r), quality(r, rows_read)]
     return [s for s in out if s]
 
 

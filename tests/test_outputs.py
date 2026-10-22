@@ -92,3 +92,15 @@ def test_dockless_finding_uses_share_with_an_undocked_end(results):
     e = r["docking"][r["docking"].rideable_type == "electric_bike"]
     expected = "%.0f%%" % (100 * (1 - e.both_docked.sum() / e.trips.sum()))
     assert findings.dockless(r).startswith(expected + " of electric-bike trips")
+
+
+def test_seasonality_reports_busiest_and_quietest_month():
+    import pandas as pd
+    months = ["2025-%02d" % i for i in range(3, 9)]
+    m = pd.DataFrame({"month": months, "trips": [100, 200, 300, 400, 300, 200], "days": [10] * 6,
+                      "casual_trips": [10, 40, 90, 160, 90, 40]})
+    m["trips_per_day"] = m.trips / m.days
+    text = findings.seasonality({"monthly": m})
+    assert "2025-06 is the busiest" in text and "2025-03 the quietest" in text and "4.0 to 1" in text
+    assert "40% of trips in 2025-06" in text and "against 10% in 2025-03" in text
+    assert findings.seasonality({"monthly": m.head(3)}) == ""

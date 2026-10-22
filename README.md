@@ -4,19 +4,22 @@ A reproducible SQL and pandas analysis of Capital Bikeshare trip data for the Wa
 
 ![Average trips per day by hour, members versus casual riders](docs/images/hourly.png)
 
-*Figure from February 2026 only (one winter month). Run it on a full year before drawing conclusions about the seasons.*
+*Average trips per day by start hour, March 2025 to February 2026.*
 
-## What the February 2026 data shows
+## What twelve months of data shows
 
-These numbers come from `cabi analyze` on the February 2026 file. They describe one month and are not causal.
+These numbers come from `cabi analyze` on March 2025 through February 2026 (6,355,260 trips after cleaning). They describe one year and are not causal.
 
-- 231,439 trips in 28 days, about 8,266 a day. Members took 81% of them and 74% were on electric bikes.
-- Weekday member riding peaks at 8am and 5pm, which looks like commuting. Casual riders have one peak (5pm on weekdays, 2pm on weekends).
-- The median ride is 9.2 minutes for casual riders and 8.0 for members. On classic bikes the gap is larger, 13.2 versus 8.0 minutes.
-- 5% of casual docked trips end where they started, against 2% for members.
-- On weekday mornings the biggest net drain is New Hampshire Ave & T St NW (13.0 bikes a day) and the biggest net gain is Columbus Circle / Union Station (+16.8). 61 stations lose 5 or more bikes on at least half of weekdays.
-- 36% of electric-bike trips have an end away from a dock, so dock-based analysis sees only part of e-bike use.
-- Cleaning removed 5,125 of 236,578 rows (2.2%).
+- About 17,400 trips a day. Members took 71% of them and 63% were on electric bikes.
+- Demand is strongly seasonal. June 2025 was the busiest month at about 22,450 trips a day and January 2026 the quietest at about 8,200, a ratio of 2.7 to 1. Casual riders swing the most, from 34% of trips in August to 19% in January.
+- Weekday member riding peaks at 8am and 5pm, which looks like commuting. Casual riders have one peak (5pm on weekdays, 3pm on weekends).
+- The median ride is 11.8 minutes for casual riders and 8.7 for members. On classic bikes the gap is larger, 15.6 versus 8.4 minutes.
+- 7% of casual docked trips end where they started, against 2% for members.
+- On weekday mornings the biggest net drain is Lincoln Park / 13th & East Capitol St NE (16.7 bikes a day) and the biggest net gain is 17th & K St NW / Farragut Square (+22.6). 91 stations lose 5 or more bikes on at least half of weekdays.
+- 47% of electric-bike trips have an end away from a dock, so station-level analysis sees only the other 53% of e-bike use.
+- Cleaning removed 149,677 of about 6.5 million rows (2.3%), nearly all of them rides under a minute.
+
+![Daily trips by rider type over the year](docs/images/daily.png)
 
 ![Weekday morning net flow by station](docs/images/stations_am.png)
 
