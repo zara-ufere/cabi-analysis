@@ -1,0 +1,10 @@
+__pycache__/
+*.egg-info/
+.pytest_cache/
+.venv/
+build/
+dist/
+*.db
+.ipynb_checkpoints/
+# Raw trip files fall under the Capital Bikeshare data license agreement; download them instead of committing them.
+data/
